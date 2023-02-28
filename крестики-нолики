@@ -1,0 +1,44 @@
+maps = list(range(1,10))
+winner_combination = ([1,2,3],[4,5,6],[7,8,9],[1,5,9],[7,5,3], [1,4,7],[2,5,8],[3,6,9])
+max_move = 9
+counter = 0 
+#desk for game
+def map_board():
+    print ("-----------")
+    for i in range (3):
+        print ('|', str(maps[0+i*3]) + '|',str( maps[1+i*3]) + '|', str(maps[2+i*3]), '|')
+    print ("-----------")
+
+# Ходы игроков
+def player_move(move,symbol): 
+    ind = maps.index (move)
+    maps[ind] = symbol
+
+ 
+
+# игра
+def game():
+    map_board()
+    global counter
+    while counter < max_move: 
+        if counter % 2 == 0:
+            try: 
+                move = int((input("Первый игрок, Ваш ход ___ ")))
+                player_move (move, "X")
+            except ValueError:
+                print("Поле уже занято, выберите другое поле")
+            
+        else:
+            try: 
+                move = int((input("Второй игрок, Ваш ход ___ ")))
+                player_move (move, "O")
+                
+            except ValueError:
+                print("Поле уже занято, выберите другое поле")
+        map_board()
+        counter += 1
+        if counter == max_move:
+            print ("Ничья попробуйте снова")
+        
+
+game()
